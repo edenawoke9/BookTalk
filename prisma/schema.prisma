@@ -43,6 +43,7 @@ model Group {
   id    Int     @id @default(autoincrement())
   img   String?
   users User[]  @relation("GroupToUser")  // Many-to-many with User
+  texts Text[]
   @@map("groups")
 }
 
@@ -51,5 +52,7 @@ model Text {
   body   String 
   user   User   @relation(fields: [userId], references: [id])
   userId Int
+  groupId Int
+  groups Group @relation(fields: [groupId],references: [id])
   @@map("texts")
 }
