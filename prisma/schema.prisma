@@ -1,6 +1,5 @@
 generator client {
   provider = "prisma-client-js"
- 
 }
 
 datasource db {
@@ -8,13 +7,49 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model user {
-  id         Int    @id @default(autoincrement())
+model User {
+  id         Int      @id @default(autoincrement())
   name       String
-  username   String @unique 
-  profileImg String 
-  bio        String 
+  username   String   @unique 
+  profileImg String?
+  bio        String?
   password   String 
-  
-  @@map("Users")
+  groups     Group[]  @relation("GroupToUser")  // Many-to-many with Group
+  texts      Text[]                             // One-to-many with Text
+  @@map("users")  // lowercase is more conventional for table names
+}
+
+model Book {
+  id       Int       @id @default(autoincrement())
+  name     String
+  genre    String    // corrected spelling
+  coverImg String?
+  desc     String?
+  review   Int?
+  comments Comment[] // One-to-many with Comment
+  @@map("books")
+}
+
+model Comment {
+  id     Int     @id @default(autoincrement())
+  body   String
+  date   DateTime  // Date is not a Prisma type, use DateTime
+  book   Book     @relation(fields: [bookId], references: [id])
+  bookId Int
+  @@map("comments")
+}
+
+model Group {
+  id    Int     @id @default(autoincrement())
+  img   String?
+  users User[]  @relation("GroupToUser")  // Many-to-many with User
+  @@map("groups")
+}
+
+model Text {
+  id     Int    @id @default(autoincrement())
+  body   String 
+  user   User   @relation(fields: [userId], references: [id])
+  userId Int
+  @@map("texts")
 }
