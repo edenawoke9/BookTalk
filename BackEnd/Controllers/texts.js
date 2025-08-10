@@ -1,5 +1,5 @@
 import { PrismaClient } from "@prisma/client";
-const prisma=PrismaClient()
+const prisma=new PrismaClient()
 const createText=async(req,res)=>{
     const text=prisma.Text.create({
         data: req.body
