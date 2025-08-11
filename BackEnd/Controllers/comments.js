@@ -1,51 +1,40 @@
 import { PrismaClient } from "@prisma/client";
-const prisma=PrismaClient()
+const prisma=new PrismaClient()
 const Create=async(req,res)=>{
-    const book=prisma.Book.create({
+    const Comment=prisma.Comment.create({
         data: req.body
     })
-    if (!book){
-        res.status(400).json({error:" error while creating book"})
+    if (!Comment){
+        res.status(400).json({error:" error while creating Comment"})
     }
     res.status(200).json("created")
 
 
 }
 const Update=async(req,res)=>{
-    const book=prisma.Book.update({
+    const Comment=prisma.Comment.update({
         where: {id: req.params.id},
         data: req.body
 
     })
-    if (book){
+    if (Comment){
         res.status(200).json("updated")
     }
 }
 const Delete=async(req,res)=>{
     const id=req.params.findMany
-    prisma.Book.Delete({
+    prisma.Comment.Delete({
         where: {id:id}
     })
     res.status(205).json("deleted")
 }
 const GetAll=async(req,res)=>{
-    const books= prisma.Book.findMany()
-    if (!books){
-    res.status(404).json("no books found")
+    const Comments= prisma.Comment.findMany()
+    if (!Comments){
+    res.status(404).json("no Comments found")
     }
-    res.status(200).json(books)
-}
-const GetBook=async(req,res)=>{
-    const book=prisma.Book.findUnique({
-        where: {id: req.params.findMany}
-    })
-    if(!book){
-        res.status(404).json("no books found")
-
-    }
-    res.status(200).json(book)
-
-
+    res.status(200).json(Comments)
 }
 
-export {Delete,Update,Create,GetAll,GetBook}
+
+export {Delete,Update,Create,GetAll}
