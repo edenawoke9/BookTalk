@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Details - BookTalk</title>
+    <link rel="stylesheet" href="../styles/main.css">
+    <link rel="stylesheet" href="../styles/dashboard.css">
+    <link rel="stylesheet" href="../styles/books.css">
+    <link rel="stylesheet" href="../styles/book-details.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <header class="dashboard-header">
+            <div class="header-content">
+                <h1>📚 BookTalk</h1>
+                <nav class="dashboard-nav">
+                    <a href="dashboard.html" class="nav-link">Dashboard</a>
+                    <a href="books.html" class="nav-link">Books</a>
+                    <a href="groups.html" class="nav-link">Groups</a>
+                    <a href="profile.html" class="nav-link">Profile</a>
+                    <button id="logoutBtn" class="btn btn-secondary">Logout</button>
+                </nav>
+            </div>
+        </header>
+        
+        <main class="book-details-main">
+             Back Navigation 
+            <div class="back-nav">
+                <a href="books.html" class="back-link">
+                    ← Back to Library
+                </a>
+            </div>
+
+             Loading State 
+            <div id="loadingState" class="loading-state" style="display: none;">
+                <div class="loading-spinner"></div>
+                <p>Loading book details...</p>
+            </div>
+
+             Book Details Section 
+            <div id="bookDetailsSection" class="book-details-section" style="display: none;">
+                <div class="book-hero">
+                    <div class="book-cover-large">
+                        <img id="bookCoverImg" src="/placeholder.svg" alt="" onerror="this.parentElement.classList.add('no-image'); this.style.display='none';">
+                        <div class="cover-placeholder">📖</div>
+                    </div>
+                    <div class="book-info-detailed">
+                        <h1 id="bookTitle" class="book-title-large"></h1>
+                        <div class="book-meta">
+                            <span id="bookGenre" class="genre-tag"></span>
+                            <div id="bookRating" class="rating-display"></div>
+                        </div>
+                        <p id="bookDescription" class="book-description-full"></p>
+                        <div class="book-actions-detailed">
+                            <button id="editBookBtn" class="btn btn-primary">✏️ Edit Book</button>
+                            <button id="deleteBookBtn" class="btn btn-secondary">🗑️ Delete Book</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+             Comments Section 
+            <div id="commentsSection" class="comments-section" style="display: none;">
+                <div class="comments-header">
+                    <h2>📝 Discussion & Reviews</h2>
+                    <p>Share your thoughts about this book</p>
+                </div>
+
+                 Add Comment Form 
+                <div class="add-comment-section">
+                    <form id="commentForm" class="comment-form">
+                        <div class="form-group">
+                            <label for="commentBody">Your Comment</label>
+                            <textarea 
+                                id="commentBody" 
+                                name="body" 
+                                rows="4" 
+                                placeholder="Share your thoughts, insights, or review about this book..."
+                                required
+                            ></textarea>
+                        </div>
+                        <div class="comment-actions">
+                            <button type="submit" class="btn btn-primary">📝 Post Comment</button>
+                        </div>
+                        <div id="commentError" class="error-message" style="display: none;"></div>
+                    </form>
+                </div>
+
+                 Comments List 
+                <div class="comments-list">
+                    <div id="commentsContainer">
+                         Comments will be loaded here 
+                    </div>
+                    
+                     Empty Comments State 
+                    <div id="emptyComments" class="empty-comments" style="display: none;">
+                        <div class="empty-icon">💬</div>
+                        <h3>No Comments Yet</h3>
+                        <p>Be the first to share your thoughts about this book!</p>
+                    </div>
+                </div>
+            </div>
+
+             Error State 
+            <div id="errorState" class="error-state" style="display: none;">
+                <div class="error-icon">❌</div>
+                <h3>Book Not Found</h3>
+                <p>The book you're looking for doesn't exist or has been removed.</p>
+                <a href="books.html" class="btn btn-primary">Return to Library</a>
+            </div>
+        </main>
+    </div>
+
+     Edit Book Modal (reuse from books.html) 
+    <div id="bookModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modalTitle">Edit Book</h3>
+                <button id="closeModal" class="close-btn">&times;</button>
+            </div>
+            <form id="bookForm" class="modal-form">
+                <input type="hidden" id="bookId" name="bookId">
+                
+                <div class="form-group">
+                    <label for="bookName">Book Title *</label>
+                    <input type="text" id="bookName" name="name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="bookGenreEdit">Genre *</label>
+                    <select id="bookGenreEdit" name="genre" required>
+                        <option value="">Select Genre</option>
+                        <option value="Fiction">Fiction</option>
+                        <option value="Non-Fiction">Non-Fiction</option>
+                        <option value="Mystery">Mystery</option>
+                        <option value="Romance">Romance</option>
+                        <option value="Sci-Fi">Science Fiction</option>
+                        <option value="Fantasy">Fantasy</option>
+                        <option value="Biography">Biography</option>
+                        <option value="History">History</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="bookDesc">Description</label>
+                    <textarea id="bookDesc" name="desc" rows="4" placeholder="Tell us about this book..."></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="bookReview">Your Rating (1-5)</label>
+                    <select id="bookReview" name="review">
+                        <option value="">No Rating</option>
+                        <option value="1">⭐ 1 Star</option>
+                        <option value="2">⭐⭐ 2 Stars</option>
+                        <option value="3">⭐⭐⭐ 3 Stars</option>
+                        <option value="4">⭐⭐⭐⭐ 4 Stars</option>
+                        <option value="5">⭐⭐⭐⭐⭐ 5 Stars</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="bookCover">Cover Image URL</label>
+                    <input type="url" id="bookCover" name="coverImg" placeholder="https://example.com/book-cover.jpg">
+                </div>
+                
+                <div class="modal-actions">
+                    <button type="button" id="cancelBtn" class="btn btn-secondary">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save Changes</button>
+                </div>
+                
+                <div id="modalError" class="error-message" style="display: none;"></div>
+            </form>
+        </div>
+    </div>
+
+    <script src="../js/config.js"></script>
+    <script src="../js/dashboard.js"></script>
+    <script src="../js/book-details.js"></script>
+</body>
+</html>

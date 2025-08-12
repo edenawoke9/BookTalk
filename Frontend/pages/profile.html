@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Profile - BookTalk</title>
+    <link rel="stylesheet" href="../styles/main.css">
+    <link rel="stylesheet" href="../styles/dashboard.css">
+    <link rel="stylesheet" href="../styles/profile.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <header class="dashboard-header">
+            <div class="header-content">
+                <h1>📚 BookTalk</h1>
+                <nav class="dashboard-nav">
+                    <a href="dashboard.html" class="nav-link">Dashboard</a>
+                    <a href="books.html" class="nav-link">Books</a>
+                    <a href="groups.html" class="nav-link">Groups</a>
+                    <a href="profile.html" class="nav-link active">Profile</a>
+                    <button id="logoutBtn" class="btn btn-secondary">Logout</button>
+                </nav>
+            </div>
+        </header>
+        
+        <main class="profile-main">
+             Profile Header 
+            <div class="profile-header">
+                <div class="profile-avatar-section">
+                    <div class="profile-avatar" id="profileAvatar">
+                        <img id="profileImage" src="/placeholder.svg" alt="Profile" style="display: none;" onerror="this.style.display='none';">
+                        <div class="avatar-placeholder" id="avatarPlaceholder">👤</div>
+                    </div>
+                    <button id="changeAvatarBtn" class="btn btn-secondary btn-small">Change Photo</button>
+                </div>
+                
+                <div class="profile-info">
+                    <h1 id="profileName" class="profile-name">Loading...</h1>
+                    <p id="profileUsername" class="profile-username">@username</p>
+                    <p id="profileBio" class="profile-bio">No bio available</p>
+                    <div class="profile-stats">
+                        <div class="stat-item">
+                            <span class="stat-number" id="booksReadCount">0</span>
+                            <span class="stat-label">Books Read</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number" id="groupsJoinedCount">0</span>
+                            <span class="stat-label">Groups Joined</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number" id="reviewsWrittenCount">0</span>
+                            <span class="stat-label">Reviews Written</span>
+                        </div>
+                    </div>
+                    <div class="profile-actions">
+                        <button id="editProfileBtn" class="btn btn-primary">✏️ Edit Profile</button>
+                        <button id="settingsBtn" class="btn btn-secondary">⚙️ Settings</button>
+                    </div>
+                </div>
+            </div>
+
+             Profile Content Tabs 
+            <div class="profile-tabs">
+                <button class="tab-btn active" data-tab="overview">📊 Overview</button>
+                <button class="tab-btn" data-tab="reading-list">📚 Reading List</button>
+                <button class="tab-btn" data-tab="reviews">⭐ My Reviews</button>
+                <button class="tab-btn" data-tab="groups">👥 My Groups</button>
+                <button class="tab-btn" data-tab="activity">📈 Activity</button>
+            </div>
+
+             Tab Content 
+            <div class="tab-content">
+                 Overview Tab 
+                <div id="overview-tab" class="tab-pane active">
+                    <div class="overview-grid">
+                         Reading Progress 
+                        <div class="overview-card">
+                            <h3>📖 Reading Progress</h3>
+                            <div class="reading-progress">
+                                <div class="progress-item">
+                                    <span class="progress-label">Currently Reading</span>
+                                    <span class="progress-value" id="currentlyReading">2 books</span>
+                                </div>
+                                <div class="progress-item">
+                                    <span class="progress-label">This Month</span>
+                                    <span class="progress-value" id="thisMonth">3 books</span>
+                                </div>
+                                <div class="progress-item">
+                                    <span class="progress-label">This Year</span>
+                                    <span class="progress-value" id="thisYear">24 books</span>
+                                </div>
+                            </div>
+                        </div>
+
+                         Favorite Genres 
+                        <div class="overview-card">
+                            <h3>🎭 Favorite Genres</h3>
+                            <div class="genre-chart" id="genreChart">
+                                 Genre data will be populated here 
+                            </div>
+                        </div>
+
+                         Recent Activity 
+                        <div class="overview-card">
+                            <h3>🕒 Recent Activity</h3>
+                            <div class="activity-feed" id="recentActivity">
+                                 Recent activity will be populated here 
+                            </div>
+                        </div>
+
+                         Reading Goals 
+                        <div class="overview-card">
+                            <h3>🎯 Reading Goals</h3>
+                            <div class="reading-goals">
+                                <div class="goal-item">
+                                    <div class="goal-header">
+                                        <span class="goal-title">2024 Reading Challenge</span>
+                                        <span class="goal-progress">24/50 books</span>
+                                    </div>
+                                    <div class="goal-bar">
+                                        <div class="goal-fill" style="width: 48%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                 Reading List Tab 
+                <div id="reading-list-tab" class="tab-pane">
+                    <div class="reading-list-controls">
+                        <div class="list-filters">
+                            <button class="filter-btn active" data-status="all">All Books</button>
+                            <button class="filter-btn" data-status="currently-reading">Currently Reading</button>
+                            <button class="filter-btn" data-status="want-to-read">Want to Read</button>
+                            <button class="filter-btn" data-status="completed">Completed</button>
+                        </div>
+                        <button id="addToReadingListBtn" class="btn btn-primary">+ Add Book</button>
+                    </div>
+                    <div id="readingListGrid" class="reading-list-grid">
+                         Reading list books will be populated here 
+                    </div>
+                </div>
+
+                 Reviews Tab 
+                <div id="reviews-tab" class="tab-pane">
+                    <div class="reviews-header">
+                        <h3>My Book Reviews</h3>
+                        <div class="reviews-stats">
+                            <span class="review-stat">Average Rating: <strong>4.2/5</strong></span>
+                            <span class="review-stat">Total Reviews: <strong id="totalReviews">0</strong></span>
+                        </div>
+                    </div>
+                    <div id="reviewsGrid" class="reviews-grid">
+                         User reviews will be populated here 
+                    </div>
+                </div>
+
+                 Groups Tab 
+                <div id="groups-tab" class="tab-pane">
+                    <div class="groups-header">
+                        <h3>My Reading Groups</h3>
+                        <a href="groups.html" class="btn btn-primary">Browse All Groups</a>
+                    </div>
+                    <div id="userGroupsGrid" class="user-groups-grid">
+                         User's groups will be populated here 
+                    </div>
+                </div>
+
+                 Activity Tab 
+                <div id="activity-tab" class="tab-pane">
+                    <div class="activity-header">
+                        <h3>Reading Activity</h3>
+                        <div class="activity-filters">
+                            <select id="activityPeriod" class="filter-select">
+                                <option value="week">This Week</option>
+                                <option value="month">This Month</option>
+                                <option value="year">This Year</option>
+                                <option value="all">All Time</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="activity-timeline" id="activityTimeline">
+                         Activity timeline will be populated here 
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+     Edit Profile Modal 
+    <div id="editProfileModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Edit Profile</h3>
+                <button id="closeEditModal" class="close-btn">&times;</button>
+            </div>
+            <form id="editProfileForm" class="modal-form">
+                <div class="form-group">
+                    <label for="editName">Full Name *</label>
+                    <input type="text" id="editName" name="name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="editUsername">Username *</label>
+                    <input type="text" id="editUsername" name="username" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="editBio">Bio</label>
+                    <textarea id="editBio" name="bio" rows="4" placeholder="Tell us about yourself and your reading interests..."></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="editProfileImg">Profile Image URL</label>
+                    <input type="url" id="editProfileImg" name="profileImg" placeholder="https://example.com/your-photo.jpg">
+                </div>
+                
+                <div class="modal-actions">
+                    <button type="button" id="cancelEditBtn" class="btn btn-secondary">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save Changes</button>
+                </div>
+                
+                <div id="editModalError" class="error-message" style="display: none;"></div>
+            </form>
+        </div>
+    </div>
+
+     Settings Modal 
+    <div id="settingsModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Account Settings</h3>
+                <button id="closeSettingsModal" class="close-btn">&times;</button>
+            </div>
+            <div class="settings-content">
+                <div class="settings-section">
+                    <h4>Reading Preferences</h4>
+                    <div class="form-group">
+                        <label for="readingGoal">Annual Reading Goal</label>
+                        <input type="number" id="readingGoal" min="1" max="365" value="50">
+                        <small>How many books do you want to read this year?</small>
+                    </div>
+                    <div class="form-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="publicProfile" checked>
+                            <span class="checkmark"></span>
+                            Make my profile public
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="emailNotifications" checked>
+                            <span class="checkmark"></span>
+                            Email notifications for group messages
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="settings-section">
+                    <h4>Privacy Settings</h4>
+                    <div class="form-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="showReadingList">
+                            <span class="checkmark"></span>
+                            Show my reading list to others
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="showActivity">
+                            <span class="checkmark"></span>
+                            Show my reading activity
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="settings-actions">
+                    <button id="saveSettingsBtn" class="btn btn-primary">Save Settings</button>
+                    <button id="cancelSettingsBtn" class="btn btn-secondary">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+     Add to Reading List Modal 
+    <div id="addBookModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Add Book to Reading List</h3>
+                <button id="closeAddBookModal" class="close-btn">&times;</button>
+            </div>
+            <form id="addBookForm" class="modal-form">
+                <div class="form-group">
+                    <label for="bookSearch">Search for a book</label>
+                    <input type="text" id="bookSearch" placeholder="Enter book title or author...">
+                    <div id="bookSearchResults" class="search-results"></div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="readingStatus">Reading Status</label>
+                    <select id="readingStatus" name="status" required>
+                        <option value="want-to-read">Want to Read</option>
+                        <option value="currently-reading">Currently Reading</option>
+                        <option value="completed">Completed</option>
+                    </select>
+                </div>
+                
+                <div class="modal-actions">
+                    <button type="button" id="cancelAddBookBtn" class="btn btn-secondary">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Add to List</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="../js/config.js"></script>
+    <script src="../js/dashboard.js"></script>
+    <script src="../js/profile.js"></script>
+</body>
+</html>
