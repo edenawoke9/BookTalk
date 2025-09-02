@@ -5,39 +5,68 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Profile - BookTalk</title>
     <link rel="stylesheet" href="../styles/main.css">
-    <link rel="stylesheet" href="../styles/dashboard.css">
     <link rel="stylesheet" href="../styles/profile.css">
 </head>
 <body>
-    <div class="dashboard-container">
-        <header class="dashboard-header">
-            <div class="header-content">
-                <h1>📚 BookTalk</h1>
-                <nav class="dashboard-nav">
-                    <a href="dashboard.html" class="nav-link">Dashboard</a>
-                    <a href="books.html" class="nav-link">Books</a>
-                    <a href="groups.html" class="nav-link">Groups</a>
-                    <a href="profile.html" class="nav-link active">Profile</a>
-                    <button id="logoutBtn" class="btn btn-secondary">Logout</button>
-                </nav>
+    <!-- Mobile Menu Toggle -->
+    <button class="mobile-menu-toggle" onclick="toggleSidebar()">
+        <span class="nav-icon">☰</span>
+    </button>
+
+    <div class="app-container">
+        <!-- Sidebar -->
+        <nav class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <h1 class="logo">📚 BookTalk</h1>
+                <p class="logo-subtitle">Your Reading Community</p>
             </div>
-        </header>
-        
-        <main class="profile-main">
-             Profile Header 
-            <div class="profile-header">
-                <div class="profile-avatar-section">
-                    <div class="profile-avatar" id="profileAvatar">
-                        <img id="profileImage" src="/placeholder.svg" alt="Profile" style="display: none;" onerror="this.style.display='none';">
-                        <div class="avatar-placeholder" id="avatarPlaceholder">👤</div>
+            
+            <div class="sidebar-nav">
+                <div class="nav-section">
+                    <div class="nav-section-title">Main</div>
+                    <a href="books.html" class="nav-link">
+                        <span class="nav-icon">📖</span>
+                        <span>Books</span>
+                    </a>
+                    <a href="groups.html" class="nav-link">
+                        <span class="nav-icon">👥</span>
+                        <span>Groups</span>
+                    </a>
+                    <a href="profile.html" class="nav-link active">
+                        <span class="nav-icon">👤</span>
+                        <span>Profile</span>
+                    </a>
+                </div>
+                
+                <div class="nav-section">
+                    <div class="nav-section-title">Account</div>
+                    <button class="logout-btn" onclick="logout()">
+                        <span class="nav-icon">🚪</span>
+                        <span>Logout</span>
+                    </button>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Profile Header -->
+            <div class="profile-header-card">
+                <div class="profile-cover">
+                    <div class="profile-avatar-section">
+                        <div class="profile-avatar" id="profileAvatar">
+                            <img id="profileImage" src="" alt="Profile" style="display: none;">
+                            <div class="avatar-placeholder" id="avatarPlaceholder">👤</div>
+                        </div>
+                        <button id="changeAvatarBtn" class="btn btn-secondary btn-small">Change Photo</button>
                     </div>
-                    <button id="changeAvatarBtn" class="btn btn-secondary btn-small">Change Photo</button>
                 </div>
                 
                 <div class="profile-info">
                     <h1 id="profileName" class="profile-name">Loading...</h1>
                     <p id="profileUsername" class="profile-username">@username</p>
                     <p id="profileBio" class="profile-bio">No bio available</p>
+                    
                     <div class="profile-stats">
                         <div class="stat-item">
                             <span class="stat-number" id="booksReadCount">0</span>
@@ -52,66 +81,67 @@
                             <span class="stat-label">Reviews Written</span>
                         </div>
                     </div>
+                    
                     <div class="profile-actions">
-                        <button id="editProfileBtn" class="btn btn-primary">✏️ Edit Profile</button>
-                        <button id="settingsBtn" class="btn btn-secondary">⚙️ Settings</button>
+                        <button id="editProfileBtn" class="btn btn-primary">
+                            <span>✏️</span>
+                            Edit Profile
+                        </button>
+                        <button id="settingsBtn" class="btn btn-secondary">
+                            <span>⚙️</span>
+                            Settings
+                        </button>
                     </div>
                 </div>
             </div>
 
-             Profile Content Tabs 
-            <div class="profile-tabs">
-                <button class="tab-btn active" data-tab="overview">📊 Overview</button>
-                <button class="tab-btn" data-tab="reading-list">📚 Reading List</button>
-                <button class="tab-btn" data-tab="reviews">⭐ My Reviews</button>
-                <button class="tab-btn" data-tab="groups">👥 My Groups</button>
-                <button class="tab-btn" data-tab="activity">📈 Activity</button>
+            <!-- Profile Content Tabs -->
+            <div class="card mb-4">
+                <div class="card-body">
+                    <div class="profile-tabs">
+                        <button class="tab-btn active" data-tab="overview">📊 Overview</button>
+                        <button class="tab-btn" data-tab="reading-list">📚 Reading List</button>
+                        <button class="tab-btn" data-tab="reviews">⭐ My Reviews</button>
+                        <button class="tab-btn" data-tab="groups">👥 My Groups</button>
+                        <button class="tab-btn" data-tab="activity">📈 Activity</button>
+                    </div>
+                </div>
             </div>
 
-             Tab Content 
+            <!-- Tab Content -->
             <div class="tab-content">
-                 Overview Tab 
+                <!-- Overview Tab -->
                 <div id="overview-tab" class="tab-pane active">
-                    <div class="overview-grid">
-                         Reading Progress 
-                        <div class="overview-card">
-                            <h3>📖 Reading Progress</h3>
-                            <div class="reading-progress">
-                                <div class="progress-item">
-                                    <span class="progress-label">Currently Reading</span>
-                                    <span class="progress-value" id="currentlyReading">2 books</span>
-                                </div>
-                                <div class="progress-item">
-                                    <span class="progress-label">This Month</span>
-                                    <span class="progress-value" id="thisMonth">3 books</span>
-                                </div>
-                                <div class="progress-item">
-                                    <span class="progress-label">This Year</span>
-                                    <span class="progress-value" id="thisYear">24 books</span>
+                    <div class="grid grid-2">
+                        <!-- Reading Progress Card -->
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="card-title">📖 Reading Progress</h3>
+                            </div>
+                            <div class="card-body">
+                                <div class="progress-items">
+                                    <div class="progress-item">
+                                        <span class="progress-label">Currently Reading</span>
+                                        <span class="progress-value" id="currentlyReading">2 books</span>
+                                    </div>
+                                    <div class="progress-item">
+                                        <span class="progress-label">This Month</span>
+                                        <span class="progress-value" id="thisMonth">3 books</span>
+                                    </div>
+                                    <div class="progress-item">
+                                        <span class="progress-label">This Year</span>
+                                        <span class="progress-value" id="thisYear">24 books</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
 
-                         Favorite Genres 
-                        <div class="overview-card">
-                            <h3>🎭 Favorite Genres</h3>
-                            <div class="genre-chart" id="genreChart">
-                                 Genre data will be populated here 
+                        <!-- Reading Goals Card -->
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="card-title">🎯 Reading Goals</h3>
                             </div>
-                        </div>
-
-                         Recent Activity 
-                        <div class="overview-card">
-                            <h3>🕒 Recent Activity</h3>
-                            <div class="activity-feed" id="recentActivity">
-                                 Recent activity will be populated here 
-                            </div>
-                        </div>
-
-                         Reading Goals 
-                        <div class="overview-card">
-                            <h3>🎯 Reading Goals</h3>
-                            <div class="reading-goals">
+                            <div class="card-body">
                                 <div class="goal-item">
                                     <div class="goal-header">
                                         <span class="goal-title">2024 Reading Challenge</span>
@@ -120,75 +150,141 @@
                                     <div class="goal-bar">
                                         <div class="goal-fill" style="width: 48%"></div>
                                     </div>
+                                    <p class="goal-description">You're 48% of the way to your goal!</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Favorite Genres Card -->
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="card-title">🎭 Favorite Genres</h3>
+                            </div>
+                            <div class="card-body">
+                                <div class="genre-list" id="genreChart">
+                                    <div class="genre-item">
+                                        <span class="genre-name">Fiction</span>
+                                        <span class="genre-count">12 books</span>
+                                    </div>
+                                    <div class="genre-item">
+                                        <span class="genre-name">Mystery</span>
+                                        <span class="genre-count">8 books</span>
+                                    </div>
+                                    <div class="genre-item">
+                                        <span class="genre-name">Science Fiction</span>
+                                        <span class="genre-count">6 books</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Recent Activity Card -->
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="card-title">🕒 Recent Activity</h3>
+                            </div>
+                            <div class="card-body">
+                                <div class="activity-feed" id="recentActivity">
+                                    <div class="activity-item">
+                                        <div class="activity-icon">📖</div>
+                                        <div class="activity-content">
+                                            <p>Started reading <strong>"The Great Gatsby"</strong></p>
+                                            <span class="activity-time">2 hours ago</span>
+                                        </div>
+                                    </div>
+                                    <div class="activity-item">
+                                        <div class="activity-icon">⭐</div>
+                                        <div class="activity-content">
+                                            <p>Reviewed <strong>"To Kill a Mockingbird"</strong></p>
+                                            <span class="activity-time">1 day ago</span>
+                                        </div>
+                                    </div>
+                                    <div class="activity-item">
+                                        <div class="activity-icon">👥</div>
+                                        <div class="activity-content">
+                                            <p>Joined <strong>Mystery Book Club</strong></p>
+                                            <span class="activity-time">3 days ago</span>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                 Reading List Tab 
+                <!-- Reading List Tab -->
                 <div id="reading-list-tab" class="tab-pane">
-                    <div class="reading-list-controls">
-                        <div class="list-filters">
-                            <button class="filter-btn active" data-status="all">All Books</button>
-                            <button class="filter-btn" data-status="currently-reading">Currently Reading</button>
-                            <button class="filter-btn" data-status="want-to-read">Want to Read</button>
-                            <button class="filter-btn" data-status="completed">Completed</button>
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <div class="list-controls">
+                                <div class="list-filters">
+                                    <button class="filter-btn active" data-status="all">All Books</button>
+                                    <button class="filter-btn" data-status="currently-reading">Currently Reading</button>
+                                    <button class="filter-btn" data-status="want-to-read">Want to Read</button>
+                                    <button class="filter-btn" data-status="completed">Completed</button>
+                                </div>
+                                <button id="addToReadingListBtn" class="btn btn-primary">+ Add Book</button>
+                            </div>
                         </div>
-                        <button id="addToReadingListBtn" class="btn btn-primary">+ Add Book</button>
                     </div>
-                    <div id="readingListGrid" class="reading-list-grid">
-                         Reading list books will be populated here 
+                    <div id="readingListGrid" class="grid grid-3">
+                        <!-- Reading list books will be populated here -->
                     </div>
                 </div>
 
-                 Reviews Tab 
+                <!-- Reviews Tab -->
                 <div id="reviews-tab" class="tab-pane">
-                    <div class="reviews-header">
-                        <h3>My Book Reviews</h3>
-                        <div class="reviews-stats">
-                            <span class="review-stat">Average Rating: <strong>4.2/5</strong></span>
-                            <span class="review-stat">Total Reviews: <strong id="totalReviews">0</strong></span>
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <h3 class="card-title">My Book Reviews</h3>
+                            <div class="reviews-stats">
+                                <span class="review-stat">Average Rating: <strong>4.2/5</strong></span>
+                                <span class="review-stat">Total Reviews: <strong id="totalReviews">0</strong></span>
+                            </div>
                         </div>
                     </div>
-                    <div id="reviewsGrid" class="reviews-grid">
-                         User reviews will be populated here 
+                    <div id="reviewsGrid" class="grid grid-2">
+                        <!-- User reviews will be populated here -->
                     </div>
                 </div>
 
-                 Groups Tab 
+                <!-- Groups Tab -->
                 <div id="groups-tab" class="tab-pane">
-                    <div class="groups-header">
-                        <h3>My Reading Groups</h3>
-                        <a href="groups.html" class="btn btn-primary">Browse All Groups</a>
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <h3 class="card-title">My Reading Groups</h3>
+                            <a href="groups.html" class="btn btn-primary">Browse All Groups</a>
+                        </div>
                     </div>
-                    <div id="userGroupsGrid" class="user-groups-grid">
-                         User's groups will be populated here 
+                    <div id="userGroupsGrid" class="grid grid-3">
+                        <!-- User's groups will be populated here -->
                     </div>
                 </div>
 
-                 Activity Tab 
+                <!-- Activity Tab -->
                 <div id="activity-tab" class="tab-pane">
-                    <div class="activity-header">
-                        <h3>Reading Activity</h3>
-                        <div class="activity-filters">
-                            <select id="activityPeriod" class="filter-select">
-                                <option value="week">This Week</option>
-                                <option value="month">This Month</option>
-                                <option value="year">This Year</option>
-                                <option value="all">All Time</option>
-                            </select>
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <div class="activity-controls">
+                                <h3>Reading Activity</h3>
+                                <select id="activityPeriod" class="filter-select">
+                                    <option value="week">This Week</option>
+                                    <option value="month">This Month</option>
+                                    <option value="year">This Year</option>
+                                    <option value="all">All Time</option>
+                                </select>
+                            </div>
                         </div>
                     </div>
                     <div class="activity-timeline" id="activityTimeline">
-                         Activity timeline will be populated here 
+                        <!-- Activity timeline will be populated here -->
                     </div>
                 </div>
             </div>
         </main>
     </div>
 
-     Edit Profile Modal 
+    <!-- Edit Profile Modal -->
     <div id="editProfileModal" class="modal" style="display: none;">
         <div class="modal-content">
             <div class="modal-header">
@@ -226,32 +322,30 @@
         </div>
     </div>
 
-     Settings Modal 
+    <!-- Settings Modal -->
     <div id="settingsModal" class="modal" style="display: none;">
         <div class="modal-content">
             <div class="modal-header">
                 <h3>Account Settings</h3>
                 <button id="closeSettingsModal" class="close-btn">&times;</button>
             </div>
-            <div class="settings-content">
+            <div style="padding: 2rem;">
                 <div class="settings-section">
                     <h4>Reading Preferences</h4>
                     <div class="form-group">
                         <label for="readingGoal">Annual Reading Goal</label>
                         <input type="number" id="readingGoal" min="1" max="365" value="50">
-                        <small>How many books do you want to read this year?</small>
+                        <small style="color: #6b7280; font-size: 0.8rem;">How many books do you want to read this year?</small>
                     </div>
                     <div class="form-group">
-                        <label class="checkbox-label">
+                        <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
                             <input type="checkbox" id="publicProfile" checked>
-                            <span class="checkmark"></span>
                             Make my profile public
                         </label>
                     </div>
                     <div class="form-group">
-                        <label class="checkbox-label">
+                        <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
                             <input type="checkbox" id="emailNotifications" checked>
-                            <span class="checkmark"></span>
                             Email notifications for group messages
                         </label>
                     </div>
@@ -260,16 +354,14 @@
                 <div class="settings-section">
                     <h4>Privacy Settings</h4>
                     <div class="form-group">
-                        <label class="checkbox-label">
+                        <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
                             <input type="checkbox" id="showReadingList">
-                            <span class="checkmark"></span>
                             Show my reading list to others
                         </label>
                     </div>
                     <div class="form-group">
-                        <label class="checkbox-label">
+                        <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
                             <input type="checkbox" id="showActivity">
-                            <span class="checkmark"></span>
                             Show my reading activity
                         </label>
                     </div>
@@ -283,40 +375,29 @@
         </div>
     </div>
 
-     Add to Reading List Modal 
-    <div id="addBookModal" class="modal" style="display: none;">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3>Add Book to Reading List</h3>
-                <button id="closeAddBookModal" class="close-btn">&times;</button>
-            </div>
-            <form id="addBookForm" class="modal-form">
-                <div class="form-group">
-                    <label for="bookSearch">Search for a book</label>
-                    <input type="text" id="bookSearch" placeholder="Enter book title or author...">
-                    <div id="bookSearchResults" class="search-results"></div>
-                </div>
-                
-                <div class="form-group">
-                    <label for="readingStatus">Reading Status</label>
-                    <select id="readingStatus" name="status" required>
-                        <option value="want-to-read">Want to Read</option>
-                        <option value="currently-reading">Currently Reading</option>
-                        <option value="completed">Completed</option>
-                    </select>
-                </div>
-                
-                <div class="modal-actions">
-                    <button type="button" id="cancelAddBookBtn" class="btn btn-secondary">Cancel</button>
-                    <button type="submit" class="btn btn-primary">Add to List</button>
-                </div>
-            </form>
-        </div>
-    </div>
     <script src="../js/auth.js"></script>
-
     <script src="../js/config.js"></script>
     <script src="../js/dashboard.js"></script>
     <script src="../js/profile.js"></script>
+    
+    <script>
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            sidebar.classList.toggle('open');
+        }
+
+        // Close sidebar when clicking outside on mobile
+        document.addEventListener('click', function(event) {
+            const sidebar = document.getElementById('sidebar');
+            const toggle = document.querySelector('.mobile-menu-toggle');
+            
+            if (window.innerWidth <= 768 && 
+                !sidebar.contains(event.target) && 
+                !toggle.contains(event.target) && 
+                sidebar.classList.contains('open')) {
+                sidebar.classList.remove('open');
+            }
+        });
+    </script>
 </body>
 </html>

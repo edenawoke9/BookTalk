@@ -7,45 +7,92 @@
     <link rel="stylesheet" href="../styles/main.css">
     <link rel="stylesheet" href="../styles/auth.css">
 </head>
-<body>
+<body class="auth-body">
     <div class="auth-container">
         <div class="auth-card">
             <div class="auth-header">
-                <h1>📚 BookTalk</h1>
-                <h2>Join BookTalk</h2>
-                <p>Create your account to start sharing book reviews</p>
+                <div class="auth-logo">
+                    <div class="logo-icon">📚</div>
+                    <h1 class="logo-text">BookTalk</h1>
+                </div>
+                <h2 class="auth-title">Join BookTalk</h2>
+                <p class="auth-subtitle">Create your account to start sharing book reviews</p>
             </div>
             
             <form id="signupForm" class="auth-form">
                 <div class="form-group">
                     <label for="name">Full Name</label>
-                    <input type="text" id="name" name="name" required>
+                    <div class="input-wrapper">
+                        <span class="input-icon">👤</span>
+                        <input type="text" id="name" name="name" required placeholder="Enter your full name">
+                    </div>
                 </div>
                 
                 <div class="form-group">
                     <label for="username">Username</label>
-                    <input type="text" id="username" name="username" required>
+                    <div class="input-wrapper">
+                        <span class="input-icon">@</span>
+                        <input type="text" id="username" name="username" required placeholder="Choose a username">
+                    </div>
                 </div>
                 
                 <div class="form-group">
                     <label for="password">Password</label>
-                    <input type="password" id="password" name="password" required>
+                    <div class="input-wrapper">
+                        <span class="input-icon">🔒</span>
+                        <input type="password" id="password" name="password" required placeholder="Create a password">
+                    </div>
                 </div>
                 
                 <div class="form-group">
                     <label for="bio">Bio (Optional)</label>
-                    <textarea id="bio" name="bio" rows="3" placeholder="Tell us about yourself..."></textarea>
+                    <textarea id="bio" name="bio" rows="3" placeholder="Tell us about yourself and your reading interests..." 
+                              style="width: 100%; padding: 1rem; border: 2px solid #e5e7eb; border-radius: 12px; font-size: 1rem; background-color: white; transition: all 0.3s ease; resize: vertical;"></textarea>
                 </div>
                 
-                <button type="submit" class="btn btn-primary btn-full">Create Account</button>
+                <div class="form-options" style="justify-content: center;">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="agreeTerms" required>
+                        <span class="checkmark"></span>
+                        I agree to the Terms of Service and Privacy Policy
+                    </label>
+                </div>
+                
+                <button type="submit" class="btn btn-primary btn-full">
+                    <span>Create Account</span>
+                </button>
                 
                 <div id="errorMessage" class="error-message" style="display: none;"></div>
                 <div id="successMessage" class="success-message" style="display: none;"></div>
             </form>
             
             <div class="auth-footer">
-                <p>Already have an account? <a href="login.html">Login here</a></p>
+                <p>Already have an account? <a href="login.html" class="signup-link">Login here</a></p>
             </div>
+            
+            <div class="auth-divider">
+                <span>or</span>
+            </div>
+            
+            <div class="social-login">
+                <button type="button" class="btn btn-social">
+                    <span>📧</span>
+                    Sign up with Email
+                </button>
+                <button type="button" class="btn btn-social">
+                    <span>🔗</span>
+                    Sign up with Google
+                </button>
+            </div>
+        </div>
+        
+        <div class="auth-background">
+            <div class="floating-book">📖</div>
+            <div class="floating-book">📚</div>
+            <div class="floating-book">📓</div>
+            <div class="floating-book">📔</div>
+            <div class="floating-book">📕</div>
+            <div class="floating-book">📗</div>
         </div>
     </div>
     

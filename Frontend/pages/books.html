@@ -5,80 +5,106 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Books - BookTalk</title>
     <link rel="stylesheet" href="../styles/main.css">
-    <link rel="stylesheet" href="../styles/dashboard.css">
     <link rel="stylesheet" href="../styles/books.css">
 </head>
 <body>
-    <div class="dashboard-container">
-        <header class="dashboard-header">
-            <div class="header-content">
-                <h1>📚 BookTalk</h1>
-                <nav class="dashboard-nav">
-                    <a href="dashboard.html" class="nav-link">Dashboard</a>
-                    <a href="books.html" class="nav-link active">Books</a>
-                    <a href="groups.html" class="nav-link">Groups</a>
-                    <a href="profile.html" class="nav-link">Profile</a>
-                    <button id="logoutBtn" class="btn btn-secondary">Logout</button>
-                </nav>
-            </div>
-        </header>
-        
-        <main class="books-main">
-            <div class="books-header">
-                <div class="books-title">
-                    <h2>📖 Library Collection</h2>
-                    <p>Discover, review, and share your favorite books</p>
-                </div>
-                <button id="addBookBtn" class="btn btn-primary">
-                    ✍️ Add New Book
-                </button>
-            </div>
+    <!-- Mobile Menu Toggle -->
+    <button class="mobile-menu-toggle" onclick="toggleSidebar()">
+        <span class="nav-icon">☰</span>
+    </button>
 
-             Search and Filter Section 
-            <div class="books-controls">
-                <div class="search-section">
-                    <input type="text" id="searchInput" placeholder="Search books by title or author..." class="search-input">
-                    <button id="searchBtn" class="btn btn-secondary">🔍 Search</button>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <nav class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <h1 class="logo">📚 BookTalk</h1>
+                <p class="logo-subtitle">Your Reading Community</p>
+            </div>
+            
+            <div class="sidebar-nav">
+                <div class="nav-section">
+                    <div class="nav-section-title">Main</div>
+                    <a href="books.html" class="nav-link active">
+                        <span class="nav-icon">📖</span>
+                        <span>Books</span>
+                    </a>
+                    <a href="groups.html" class="nav-link">
+                        <span class="nav-icon">👥</span>
+                        <span>Groups</span>
+                    </a>
+                    <a href="profile.html" class="nav-link">
+                        <span class="nav-icon">👤</span>
+                        <span>Profile</span>
+                    </a>
                 </div>
-                <div class="filter-section">
-                    <select id="genreFilter" class="filter-select">
-                        <option value="">All Genres</option>
-                        <option value="Fiction">Fiction</option>
-                        <option value="Non-Fiction">Non-Fiction</option>
-                        <option value="Mystery">Mystery</option>
-                        <option value="Romance">Romance</option>
-                        <option value="Sci-Fi">Science Fiction</option>
-                        <option value="Fantasy">Fantasy</option>
-                        <option value="Biography">Biography</option>
-                       
-                    </select>
+                
+                <div class="nav-section">
+                    <div class="nav-section-title">Account</div>
+                    <button class="logout-btn" onclick="logout()">
+                        <span class="nav-icon">🚪</span>
+                        <span>Logout</span>
+                    </button>
                 </div>
             </div>
+        </nav>
 
-             Books Grid 
-            <div id="booksGrid" class="books-grid">
-                 Books will be loaded here dynamically 
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="page-header">
+                <h1 class="page-title">📖 Library Collection</h1>
+                <p class="page-subtitle">Discover amazing books and join engaging discussions</p>
             </div>
 
-             Loading State 
+            <!-- Search and Actions -->
+            <div class="card mb-4">
+                <div class="card-body">
+                    <div style="display: flex; gap: 1rem; align-items: center; flex-wrap: wrap;">
+                        <div style="flex: 1; min-width: 250px;">
+                            <input type="text" id="searchInput" placeholder="Search books by title, author, or genre..." 
+                                   style="width: 100%; padding: 0.75rem 1rem; border: 1px solid #d1d5db; border-radius: 8px;">
+                        </div>
+                        <select id="genreFilter" style="padding: 0.75rem 1rem; border: 1px solid #d1d5db; border-radius: 8px;">
+                            <option value="">All Genres</option>
+                            <option value="Fiction">Fiction</option>
+                            <option value="Non-Fiction">Non-Fiction</option>
+                            <option value="Mystery">Mystery</option>
+                            <option value="Romance">Romance</option>
+                            <option value="Sci-Fi">Science Fiction</option>
+                            <option value="Fantasy">Fantasy</option>
+                            <option value="Biography">Biography</option>
+                        </select>
+                        <button id="addBookBtn" class="btn btn-primary">
+                            <span>✨</span>
+                            Add Book
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Books Grid -->
+            <div id="booksGrid" class="grid grid-3">
+                <!-- Books will be loaded here dynamically -->
+            </div>
+
+            <!-- Loading State -->
             <div id="loadingState" class="loading-state" style="display: none;">
                 <div class="loading-spinner"></div>
                 <p>Loading books from the library...</p>
             </div>
 
-             Empty State 
+            <!-- Empty State -->
             <div id="emptyState" class="empty-state" style="display: none;">
-                <div class="empty-icon">📚</div>
+                <div style="font-size: 4rem; margin-bottom: 1rem;">📚</div>
                 <h3>No Books Found</h3>
                 <p>Be the first to add a book to our library!</p>
-                <button class="btn btn-primary" onclick="document.getElementById('addBookBtn').click()">
+                <button class="btn btn-primary mt-3" onclick="document.getElementById('addBookBtn').click()">
                     Add First Book
                 </button>
             </div>
         </main>
     </div>
 
-     Add/Edit Book Modal 
+    <!-- Add/Edit Book Modal -->
     <div id="bookModal" class="modal" style="display: none;">
         <div class="modal-content">
             <div class="modal-header">
@@ -139,10 +165,30 @@
             </form>
         </div>
     </div>
-    <script src="../js/auth.js"></script>
 
+    <script src="../js/auth.js"></script>
     <script src="../js/config.js"></script>
     <script src="../js/dashboard.js"></script>
     <script src="../js/books.js"></script>
+    
+    <script>
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            sidebar.classList.toggle('open');
+        }
+
+        // Close sidebar when clicking outside on mobile
+        document.addEventListener('click', function(event) {
+            const sidebar = document.getElementById('sidebar');
+            const toggle = document.querySelector('.mobile-menu-toggle');
+            
+            if (window.innerWidth <= 768 && 
+                !sidebar.contains(event.target) && 
+                !toggle.contains(event.target) && 
+                sidebar.classList.contains('open')) {
+                sidebar.classList.remove('open');
+            }
+        });
+    </script>
 </body>
 </html>

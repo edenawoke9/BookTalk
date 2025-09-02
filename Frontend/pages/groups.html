@@ -5,88 +5,119 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Groups - BookTalk</title>
     <link rel="stylesheet" href="../styles/main.css">
-    <link rel="stylesheet" href="../styles/dashboard.css">
     <link rel="stylesheet" href="../styles/groups.css">
 </head>
 <body>
-    <div class="dashboard-container">
-        <header class="dashboard-header">
-            <div class="header-content">
-                <h1>📚 BookTalk</h1>
-                <nav class="dashboard-nav">
-                    <a href="dashboard.html" class="nav-link">Dashboard</a>
-                    <a href="books.html" class="nav-link">Books</a>
-                    <a href="groups.html" class="nav-link active">Groups</a>
-                    <a href="profile.html" class="nav-link">Profile</a>
-                    <button id="logoutBtn" class="btn btn-secondary">Logout</button>
-                </nav>
-            </div>
-        </header>
-        
-        <main class="groups-main">
-            <div class="groups-header">
-                <div class="groups-title">
-                    <h2>👥 Reading Communities</h2>
-                    <p>Join book clubs, discuss literature, and connect with fellow readers</p>
-                </div>
-                <button id="createGroupBtn" class="btn btn-primary">
-                    ✨ Create New Group
-                </button>
-            </div>
+    <!-- Mobile Menu Toggle -->
+    <button class="mobile-menu-toggle" onclick="toggleSidebar()">
+        <span class="nav-icon">☰</span>
+    </button>
 
-             Groups Navigation Tabs 
-            <div class="groups-tabs">
-                <button class="tab-btn active" data-tab="all">All Groups</button>
-                <button class="tab-btn" data-tab="my-groups">My Groups</button>
-                <button class="tab-btn" data-tab="popular">Popular</button>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <nav class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <h1 class="logo">📚 BookTalk</h1>
+                <p class="logo-subtitle">Your Reading Community</p>
             </div>
-
-             Search and Filter Section 
-            <div class="groups-controls">
-                <div class="search-section">
-                    <input type="text" id="searchInput" placeholder="Search groups by name or description..." class="search-input">
-                    <button id="searchBtn" class="btn btn-secondary">🔍 Search</button>
+            
+            <div class="sidebar-nav">
+                <div class="nav-section">
+                    <div class="nav-section-title">Main</div>
+                    <a href="books.html" class="nav-link">
+                        <span class="nav-icon">📖</span>
+                        <span>Books</span>
+                    </a>
+                    <a href="groups.html" class="nav-link active">
+                        <span class="nav-icon">👥</span>
+                        <span>Groups</span>
+                    </a>
+                    <a href="profile.html" class="nav-link">
+                        <span class="nav-icon">👤</span>
+                        <span>Profile</span>
+                    </a>
                 </div>
-                <div class="filter-section">
-                    <select id="categoryFilter" class="filter-select">
-                        <option value="">All Categories</option>
-                        <option value="Fiction">Fiction Lovers</option>
-                        <option value="Non-Fiction">Non-Fiction</option>
-                        <option value="Mystery">Mystery & Thriller</option>
-                        <option value="Romance">Romance</option>
-                        <option value="Sci-Fi">Science Fiction</option>
-                        <option value="Fantasy">Fantasy</option>
-                        <option value="Biography">Biography</option>
-                        <option value="Book Club">Book Club</option>
-                        <option value="Discussion">Discussion Group</option>
-                    </select>
+                
+                <div class="nav-section">
+                    <div class="nav-section-title">Account</div>
+                    <button class="logout-btn" onclick="logout()">
+                        <span class="nav-icon">🚪</span>
+                        <span>Logout</span>
+                    </button>
                 </div>
             </div>
+        </nav>
 
-             Groups Grid 
-            <div id="groupsGrid" class="groups-grid">
-                 Groups will be loaded here dynamically 
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="page-header">
+                <h1 class="page-title">👥 Reading Communities</h1>
+                <p class="page-subtitle">Join book clubs, discuss literature, and connect with fellow readers</p>
             </div>
 
-             Loading State 
+            <!-- Group Tabs -->
+            <div class="card mb-4">
+                <div class="card-body">
+                    <div class="groups-tabs">
+                        <button class="tab-btn active" data-tab="all">All Groups</button>
+                        <button class="tab-btn" data-tab="my-groups">My Groups</button>
+                        <button class="tab-btn" data-tab="popular">Popular</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Search and Actions -->
+            <div class="card mb-4">
+                <div class="card-body">
+                    <div style="display: flex; gap: 1rem; align-items: center; flex-wrap: wrap;">
+                        <div style="flex: 1; min-width: 250px;">
+                            <input type="text" id="searchInput" placeholder="Search groups by name or description..." 
+                                   style="width: 100%; padding: 0.75rem 1rem; border: 1px solid #d1d5db; border-radius: 8px;">
+                        </div>
+                        <select id="categoryFilter" style="padding: 0.75rem 1rem; border: 1px solid #d1d5db; border-radius: 8px;">
+                            <option value="">All Categories</option>
+                            <option value="Fiction">Fiction Lovers</option>
+                            <option value="Non-Fiction">Non-Fiction</option>
+                            <option value="Mystery">Mystery & Thriller</option>
+                            <option value="Romance">Romance</option>
+                            <option value="Sci-Fi">Science Fiction</option>
+                            <option value="Fantasy">Fantasy</option>
+                            <option value="Biography">Biography</option>
+                            <option value="Book Club">Book Club</option>
+                            <option value="Discussion">Discussion Group</option>
+                        </select>
+                        <button id="createGroupBtn" class="btn btn-primary">
+                            <span>✨</span>
+                            Create Group
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Groups Grid -->
+            <div id="groupsGrid" class="grid grid-3">
+                <!-- Groups will be loaded here dynamically -->
+            </div>
+
+            <!-- Loading State -->
             <div id="loadingState" class="loading-state" style="display: none;">
                 <div class="loading-spinner"></div>
                 <p>Loading reading communities...</p>
             </div>
 
-             Empty State 
+            <!-- Empty State -->
             <div id="emptyState" class="empty-state" style="display: none;">
-                <div class="empty-icon">👥</div>
+                <div style="font-size: 4rem; margin-bottom: 1rem;">👥</div>
                 <h3>No Groups Found</h3>
                 <p>Be the first to create a reading community!</p>
-                <button class="btn btn-primary" onclick="document.getElementById('createGroupBtn').click()">
+                <button class="btn btn-primary mt-3" onclick="document.getElementById('createGroupBtn').click()">
                     Create First Group
                 </button>
             </div>
         </main>
     </div>
 
-     Create/Edit Group Modal 
+    <!-- Create/Edit Group Modal -->
     <div id="groupModal" class="modal" style="display: none;">
         <div class="modal-content">
             <div class="modal-header">
@@ -119,7 +150,8 @@
                 
                 <div class="form-group">
                     <label for="groupDescription">Description *</label>
-                    <textarea id="groupDescription" name="description" rows="4" required placeholder="Tell us about your group's purpose and what kind of discussions you'll have..."></textarea>
+                    <textarea id="groupDescription" name="description" rows="4" required 
+                              placeholder="Tell us about your group's purpose and what kind of discussions you'll have..."></textarea>
                 </div>
                 
                 <div class="form-group">
@@ -128,9 +160,8 @@
                 </div>
                 
                 <div class="form-group">
-                    <label class="checkbox-label">
+                    <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
                         <input type="checkbox" id="isPrivate" name="isPrivate">
-                        <span class="checkmark"></span>
                         Private Group (invitation only)
                     </label>
                 </div>
@@ -145,17 +176,17 @@
         </div>
     </div>
 
-     Group Details Modal 
+    <!-- Group Details Modal -->
     <div id="groupDetailsModal" class="modal" style="display: none;">
-        <div class="modal-content modal-large">
+        <div class="modal-content" style="max-width: 700px;">
             <div class="modal-header">
                 <h3 id="groupDetailsTitle">Group Details</h3>
                 <button id="closeDetailsModal" class="close-btn">&times;</button>
             </div>
-            <div class="group-details-content">
+            <div style="padding: 2rem;">
                 <div class="group-details-header">
                     <div class="group-image-large">
-                        <img id="groupDetailsImage" src="/placeholder.svg" alt="" onerror="this.parentElement.classList.add('no-image'); this.style.display='none';">
+                        <img id="groupDetailsImage" src="" alt="" style="display: none;">
                         <div class="image-placeholder">👥</div>
                     </div>
                     <div class="group-info-detailed">
@@ -178,17 +209,18 @@
                     </div>
                 </div>
                 
-                 Group Messages/Chat Section 
+                <!-- Group Messages/Chat Section -->
                 <div class="group-messages-section">
-                    <h3>💬 Group Discussion</h3>
+                    <h3 style="margin-bottom: 1rem; color: #374151;">💬 Group Discussion</h3>
                     <div class="messages-container" id="messagesContainer">
-                         Messages will be loaded here 
+                        <!-- Messages will be loaded here -->
                     </div>
                     <div class="message-form-container">
                         <form id="messageForm" class="message-form">
                             <input type="hidden" id="currentGroupId">
                             <div class="message-input-group">
-                                <textarea id="messageBody" name="body" rows="2" placeholder="Share your thoughts with the group..." required></textarea>
+                                <textarea id="messageBody" name="body" rows="2" 
+                                          placeholder="Share your thoughts with the group..." required></textarea>
                                 <button type="submit" class="btn btn-primary">Send</button>
                             </div>
                         </form>
@@ -197,10 +229,30 @@
             </div>
         </div>
     </div>
-    <script src="../js/auth.js"></script>
 
+    <script src="../js/auth.js"></script>
     <script src="../js/config.js"></script>
     <script src="../js/dashboard.js"></script>
     <script src="../js/groups.js"></script>
+    
+    <script>
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            sidebar.classList.toggle('open');
+        }
+
+        // Close sidebar when clicking outside on mobile
+        document.addEventListener('click', function(event) {
+            const sidebar = document.getElementById('sidebar');
+            const toggle = document.querySelector('.mobile-menu-toggle');
+            
+            if (window.innerWidth <= 768 && 
+                !sidebar.contains(event.target) && 
+                !toggle.contains(event.target) && 
+                sidebar.classList.contains('open')) {
+                sidebar.classList.remove('open');
+            }
+        });
+    </script>
 </body>
 </html>

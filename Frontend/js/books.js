@@ -118,17 +118,17 @@ document.addEventListener("DOMContentLoaded", () => {
       .map(
         (book) => `
         <div class="book-card" data-book-id="${book.id}">
-            <div class="book-cover ${!book.coverImg ? "no-image" : ""}">
+            <div class="book-cover">
                 ${
                   book.coverImg
-                    ? `<img src="${book.coverImg}" alt="${escapeHtml(book.name)}" onerror="this.parentElement.classList.add('no-image'); this.style.display='none';">`
-                    : ""
+                    ? `<img src="${book.coverImg}" alt="${escapeHtml(book.name)}" onerror="this.parentElement.querySelector('.placeholder').style.display='flex';">`
+                    : `<div class="placeholder">📖</div>`
                 }
+                <span class="book-genre">${escapeHtml(book.genre)}</span>
             </div>
             <div class="book-info">
                 <h3 class="book-title">${escapeHtml(book.name)}</h3>
-                <span class="book-genre">${escapeHtml(book.genre)}</span>
-                ${book.desc ? `<p class="book-description">${escapeHtml(book.desc)}</p>` : ""}
+                ${book.desc ? `<p class="book-description">${escapeHtml(book.desc)}</p>` : `<p class="book-description">No description available</p>`}
                 ${
                   book.review
                     ? `
@@ -137,17 +137,28 @@ document.addEventListener("DOMContentLoaded", () => {
                         <span class="rating-text">${book.review}/5</span>
                     </div>
                 `
-                    : ""
+                    : `<div class="book-rating">
+                        <span class="rating-text">No rating yet</span>
+                    </div>`
                 }
+                <div class="book-stats">
+                    <div class="stat-item">
+                        <span class="stat-icon">👥</span>
+                        <span>0 readers</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-icon">💬</span>
+                        <span>0 discussions</span>
+                    </div>
+                </div>
                 <div class="book-actions">
-                    <a href="book-details.html?id=${book.id}" class="btn btn-small btn-primary">
-                        👁️ View Details
-                    </a>
-                    <button class="btn btn-small btn-edit" onclick="editBook(${book.id})">
-                        ✏️ Edit
+                    <button class="btn btn-read" onclick="readBook(${book.id})">
+                        <span>📖</span>
+                        Read
                     </button>
-                    <button class="btn btn-small btn-delete" onclick="deleteBook(${book.id})">
-                        🗑️ Delete
+                    <button class="btn btn-discuss" onclick="joinDiscussion(${book.id})">
+                        <span>💬</span>
+                        Discuss
                     </button>
                 </div>
             </div>
@@ -271,7 +282,23 @@ document.addEventListener("DOMContentLoaded", () => {
     displayBooks(filteredBooks)
   }
 
-  // Global functions for edit/delete buttons
+  // Global functions for book actions
+  window.readBook = (bookId) => {
+    const book = allBooks.find((b) => b.id === bookId)
+    if (book) {
+      // Navigate to book details page for reading
+      window.location.href = `book-details.html?id=${bookId}&action=read`
+    }
+  }
+
+  window.joinDiscussion = (bookId) => {
+    const book = allBooks.find((b) => b.id === bookId)
+    if (book) {
+      // Navigate to groups page or create a discussion group for this book
+      window.location.href = `groups.html?book=${bookId}`
+    }
+  }
+
   window.editBook = (bookId) => {
     const book = allBooks.find((b) => b.id === bookId)
     if (book) {
