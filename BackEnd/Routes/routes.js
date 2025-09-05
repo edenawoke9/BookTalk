@@ -4,7 +4,8 @@ import { SignIn, LogIn } from "../Controllers/user.js";
 import { GetBook, GetAll, Create, Update, Delete } from "../Controllers/books.js";
 import { GetTexts, createText, Delete as DeleteText } from "../Controllers/texts.js";
 import { Create as CreateComment, Update as UpdateComment, Delete as DeleteComment, GetAll as GetAllComments } from "../Controllers/comments.js";
-import { createGroup as CreateGroup,  joinGroup, leaveGroup } from "../Controllers/groups.js";
+import { createGroup as CreateGroup} from "../Controllers/groups.js";
+import { joinGroup, leaveGroup } from "../Controllers/groups.js";
 
 const router = Router();
 
@@ -32,6 +33,8 @@ router.delete("/comments/:id", DeleteComment);
 
 // Group routes
 router.post("/createGroup", CreateGroup);
+router.post("/joinGroup", joinGroup);
+router.post("/leaveGroup", leaveGroup);
 
 
 export default router;
