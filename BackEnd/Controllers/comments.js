@@ -8,7 +8,7 @@ const Create = async (req, res) => {
         });
         
         if (!Comment) {
-            return res.status(400).json({ error: "Error while creating Comment" });
+            return res.status(400).json({ error: "Error while creating Comment,not created" });
         }
         
         return res.status(201).json({ message: "Created", comment: Comment });
