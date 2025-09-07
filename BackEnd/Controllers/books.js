@@ -1,7 +1,7 @@
 import { PrismaClient } from "@prisma/client";
 const prisma=new PrismaClient()
 const Create=async(req,res)=>{
-    const book=prisma.Book.create({
+    const book= await prisma.Book.create({
         data: req.body
     })
     if (!book){
@@ -12,7 +12,7 @@ const Create=async(req,res)=>{
 
 }
 const Update=async(req,res)=>{
-    const book=prisma.Book.update({
+    const book=await prisma.Book.update({
         where: {id: req.params.id},
         data: req.body
 
@@ -23,20 +23,20 @@ const Update=async(req,res)=>{
 }
 const Delete=async(req,res)=>{
     const id=req.params.findMany
-    prisma.Book.Delete({
+    await prisma.Book.Delete({
         where: {id:id}
     })
     res.status(205).json("deleted")
 }
 const GetAll=async(req,res)=>{
-    const books= prisma.Book.findMany()
+    const books=await prisma.Book.findMany()
     if (!books){
     res.status(404).json("no books found")
     }
     res.status(200).json(books)
 }
 const GetBook=async(req,res)=>{
-    const book=prisma.Book.findUnique({
+    const book=await prisma.Book.findUnique({
         where: {id: req.params.findMany}
     })
     if(!book){

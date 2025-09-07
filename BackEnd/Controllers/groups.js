@@ -20,7 +20,7 @@ const joinGroup=async(req,res)=>{
         }
     })
     if (!join){
-        res.status(400).json("coulcn't join")
+        res.status(400).json("couldn't join")
     }
     res.status(200)
 
@@ -36,7 +36,12 @@ const leaveGroup=async(req,res)=>{
         }
 
 })
-
+if (!leave){
+    res.status(400).json("couldn't leave")
 }
+res.status(200)
+}   
+
+
 
 export {leaveGroup,joinGroup,createGroup}
