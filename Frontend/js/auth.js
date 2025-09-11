@@ -6,18 +6,18 @@ document.addEventListener("DOMContentLoaded", function(){
         checkAuth();
     }
     
-    // Add logout listener if button exists
+   
     const logoutBtn = document.getElementById("logoutBtn");
     if (logoutBtn) {
         logoutBtn.addEventListener("click", function(){
-            console.log("Logout button clicked");
+           
             document.cookie = "isLoggedIn=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
             window.location.href = "login.html";
         });
     }
 });
 function login(event){
-    // Prevent form submission from refreshing the page
+  
     if (event) {
         event.preventDefault();
     }
@@ -26,8 +26,7 @@ function login(event){
     let username = document.getElementById("username").value;
     let password = document.getElementById("password").value;
     
-    console.log(username, password);
-    console.log("login function called");
+   
     
     // Hide any previous error messages
     const errorElement = document.getElementById("errorMessage");
@@ -56,7 +55,7 @@ function login(event){
         }
     })
     .catch(error => {
-        console.error("Login error:", error);
+      
         errorElement.textContent = "Login failed. Please check your connection and try again.";
         errorElement.style.display = "block";
     });
@@ -85,33 +84,30 @@ function signup(){
 }
 
 function checkAuth(){
-    console.log("checkAuth() running on:", window.location.pathname);
-    console.log("All cookies:", document.cookie);
+ 
     
     const sessionCookie = getCookie('isLoggedIn');
-    console.log("Session cookie:", sessionCookie);
+   
     
     if (!sessionCookie) {
-        console.log("No session cookie found, redirecting to login");
+        
         if (!window.location.pathname.includes('login.html')) {
             window.location.href = "login.html";
         }
-    } else {
-        console.log("Session cookie found, user is authenticated");
-    }
+    } 
 }
 
-// Helper function to get a specific cookie
+
 function getCookie(name) {
-    console.log("Looking for cookie:", name);
+    
     const value = `; ${document.cookie}`;
     const parts = value.split(`; ${name}=`);
-    console.log("Cookie parts:", parts);
+  
     if (parts.length === 2) {
         const cookieValue = parts.pop().split(';').shift();
-        console.log("Found cookie value:", cookieValue);
+       
         return cookieValue;
     }
-    console.log("Cookie not found");
+   
     return null;
 }
