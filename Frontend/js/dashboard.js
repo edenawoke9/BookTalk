@@ -48,37 +48,37 @@ document.addEventListener("DOMContentLoaded", () => {
   loadDashboardData()
 
   // Logout functionality
-  const logoutBtn = document.getElementById("logoutBtn")
-  if (logoutBtn) {
-    logoutBtn.addEventListener("click", async (e) => {
-      e.preventDefault()
+  // const logoutBtn = document.getElementById("logoutBtn")
+  // if (logoutBtn) {
+  //   logoutBtn.addEventListener("click", async (e) => {
+  //     e.preventDefault()
 
-      // Confirm logout
-      if (!confirm("Are you sure you want to logout?")) {
-        return
-      }
+  //     // Confirm logout
+  //     if (!confirm("Are you sure you want to logout?")) {
+  //       return
+  //     }
 
-      // Disable button during logout
-      logoutBtn.disabled = true
-      logoutBtn.textContent = "Logging out..."
+  //     // Disable button during logout
+  //     logoutBtn.disabled = true
+  //     logoutBtn.textContent = "Logging out..."
 
-      try {
-        await logout()
-      } catch (error) {
-        console.error("Logout error:", error)
-        // Re-enable button if logout fails
-        logoutBtn.disabled = false
-        logoutBtn.textContent = "Logout"
-        showGlobalError("Failed to logout properly, but you will be redirected.")
+  //     try {
+  //       await logout()
+  //     } catch (error) {
+  //       console.error("Logout error:", error)
+  //       // Re-enable button if logout fails
+  //       logoutBtn.disabled = false
+  //       logoutBtn.textContent = "Logout"
+  //       showGlobalError("Failed to logout properly, but you will be redirected.")
 
-        // Force redirect after error
-        setTimeout(() => {
-          localStorage.removeItem("user")
-          window.location.href = "login.html"
-        }, 2000)
-      }
-    })
-  }
+  //       // Force redirect after error
+  //       setTimeout(() => {
+  //         localStorage.removeItem("user")
+  //         window.location.href = "login.html"
+  //       }, 2000)
+  //     }
+  //   })
+  // }
 
   // Load dashboard statistics and recent activity
   async function loadDashboardData() {
