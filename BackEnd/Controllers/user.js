@@ -1,15 +1,19 @@
 import passport from "passport";
 import { PrismaClient } from "@prisma/client";  // Use default import
+import bcrypt from 'bcryptjs';
 
 const prisma = new PrismaClient();
 
 async function SignIn(req, res) {
     try {
+        // Hash the password before storing
+        const hashedPassword = await bcrypt.hash(req.body.password, 10);
+        
         // Provide default values for required fields
         const userData = {
             name: req.body.name || "",
             username: req.body.username,
-            password: req.body.password,
+            password: hashedPassword, // Store hashed password
             profileImg: req.body.profileImg || "",
             bio: req.body.bio || ""
         };

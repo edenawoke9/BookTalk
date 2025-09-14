@@ -23,7 +23,13 @@ app.use(session({
     secret: process.env.SESSION_SECRET || 'your-secret-key',
     resave: false,
     saveUninitialized: false,
-    cookie: { secure: false }
+    cookie: { 
+        secure: false, 
+        httpOnly: false, 
+        maxAge: 24 * 60 * 60 * 1000,
+        sameSite: 'lax',
+        domain: '127.0.0.1'
+    }
 }));
 
 // Passport middleware
@@ -35,21 +41,37 @@ const prisma = new PrismaClient();
 
 passport.use(new LocalStrategy(async (username, password, done) => {
     try {
+        console.log('=== LOGIN ATTEMPT ===');
+        console.log('Username:', username);
+        console.log('Password provided:', password);
+        
         const user = await prisma.user.findUnique({
             where: { username: username }
         });
         
+        console.log('User found:', !!user);
+        if (user) {
+            console.log('Stored password (first 20 chars):', user.password.substring(0, 20));
+            console.log('Stored password starts with $2b$ (hashed):', user.password.startsWith('$2b$'));
+        }
+        
         if (!user) {
+            console.log('No user found');
             return done(null, false, { message: 'User not found' });
         }
         
+        const passwordMatch = await bcrypt.compare(password, user.password);
+        console.log('Password comparison result:', passwordMatch);
        
-        if (!bcrypt.compare(password, user.password)) { 
+        if (!passwordMatch) { 
+            console.log('Password mismatch');
             return done(null, false, { message: 'Invalid password' });
         }
         
+        console.log('Authentication successful!');
         return done(null, user);
     } catch (error) {
+        console.log('Authentication error:', error);
         return done(error);
     }
 }));

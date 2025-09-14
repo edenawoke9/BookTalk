@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", function(){
     if (logoutBtn) {
         logoutBtn.addEventListener("click", function(){
             console.log("Logout button clicked");
-            document.cookie = "connect.sid=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+            document.cookie = "isLoggedIn=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
             window.location.href = "login.html";
         });
     }
@@ -42,8 +42,10 @@ function login(event){
         body: JSON.stringify({ username, password }),
     })
     .then(response => {
+       
         if(response.ok){
-            alert("Login successful! Redirecting to dashboard...");
+            document.cookie = "isLoggedIn=true; path=/; max-age=86400";
+           
             
             setTimeout(() => {
                 window.location.href = "dashboard.html";
@@ -86,7 +88,7 @@ function checkAuth(){
     console.log("checkAuth() running on:", window.location.pathname);
     console.log("All cookies:", document.cookie);
     
-    const sessionCookie = getCookie('connect.sid');
+    const sessionCookie = getCookie('isLoggedIn');
     console.log("Session cookie:", sessionCookie);
     
     if (!sessionCookie) {
