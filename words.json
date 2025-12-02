@@ -1,4 +1,5 @@
 [
   "hi",
-  "fix broken login redirect"
+  "fix broken login redirect",
+  "resolve session expiry bug"
 ]
