@@ -1,5 +1,6 @@
 [
   "hi",
   "fix broken login redirect",
-  "resolve session expiry bug"
+  "resolve session expiry bug",
+  "fix null pointer in book fetch"
 ]
