@@ -3,5 +3,6 @@
   "fix broken login redirect",
   "resolve session expiry bug",
   "fix null pointer in book fetch",
-  "patch XSS vulnerability"
+  "patch XSS vulnerability",
+  "fix duplicate comment submission"
 ]
