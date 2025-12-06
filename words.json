@@ -4,5 +4,6 @@
   "resolve session expiry bug",
   "fix null pointer in book fetch",
   "patch XSS vulnerability",
-  "fix duplicate comment submission"
+  "fix duplicate comment submission",
+  "resolve CORS error on signup"
 ]
