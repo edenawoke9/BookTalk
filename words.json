@@ -7,5 +7,6 @@
   "fix duplicate comment submission",
   "resolve CORS error on signup",
   "fix password hashing issue",
-  "resolve race condition in auth"
+  "resolve race condition in auth",
+  "fix missing error boundary"
 ]
