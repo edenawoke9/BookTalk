@@ -8,5 +8,6 @@
   "resolve CORS error on signup",
   "fix password hashing issue",
   "resolve race condition in auth",
-  "fix missing error boundary"
+  "fix missing error boundary",
+  "patch broken pagination logic"
 ]
