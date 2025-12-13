@@ -11,5 +11,6 @@
   "fix missing error boundary",
   "patch broken pagination logic",
   "refactor user controller",
-  "clean up auth middleware"
+  "clean up auth middleware",
+  "refactor database queries"
 ]
