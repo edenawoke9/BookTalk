@@ -12,5 +12,6 @@
   "patch broken pagination logic",
   "refactor user controller",
   "clean up auth middleware",
-  "refactor database queries"
+  "refactor database queries",
+  "simplify book search logic"
 ]
