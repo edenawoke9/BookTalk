@@ -14,5 +14,6 @@
   "clean up auth middleware",
   "refactor database queries",
   "simplify book search logic",
-  "restructure route handlers"
+  "restructure route handlers",
+  "clean up unused imports"
 ]
