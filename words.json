@@ -15,5 +15,6 @@
   "refactor database queries",
   "simplify book search logic",
   "restructure route handlers",
-  "clean up unused imports"
+  "clean up unused imports",
+  "refactor session management"
 ]
