@@ -16,5 +16,6 @@
   "simplify book search logic",
   "restructure route handlers",
   "clean up unused imports",
-  "refactor session management"
+  "refactor session management",
+  "simplify comment model"
 ]
