@@ -17,5 +17,6 @@
   "restructure route handlers",
   "clean up unused imports",
   "refactor session management",
-  "simplify comment model"
+  "simplify comment model",
+  "restructure frontend components"
 ]
