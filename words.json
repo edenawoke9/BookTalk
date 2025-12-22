@@ -20,5 +20,6 @@
   "simplify comment model",
   "restructure frontend components",
   "clean up API response format",
-  "refactor prisma queries"
+  "refactor prisma queries",
+  "simplify signup validation"
 ]
