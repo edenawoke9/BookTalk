@@ -21,5 +21,6 @@
   "restructure frontend components",
   "clean up API response format",
   "refactor prisma queries",
-  "simplify signup validation"
+  "simplify signup validation",
+  "restructure folder layout"
 ]
