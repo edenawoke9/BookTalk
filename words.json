@@ -22,5 +22,6 @@
   "clean up API response format",
   "refactor prisma queries",
   "simplify signup validation",
-  "restructure folder layout"
+  "restructure folder layout",
+  "clean up console logs"
 ]
