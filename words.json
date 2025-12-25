@@ -23,5 +23,6 @@
   "refactor prisma queries",
   "simplify signup validation",
   "restructure folder layout",
-  "clean up console logs"
+  "clean up console logs",
+  "refactor error handling"
 ]
