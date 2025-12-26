@@ -24,5 +24,6 @@
   "simplify signup validation",
   "restructure folder layout",
   "clean up console logs",
-  "refactor error handling"
+  "refactor error handling",
+  "simplify token logic"
 ]
