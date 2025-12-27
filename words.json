@@ -25,5 +25,6 @@
   "restructure folder layout",
   "clean up console logs",
   "refactor error handling",
-  "simplify token logic"
+  "simplify token logic",
+  "restructure middleware chain"
 ]
