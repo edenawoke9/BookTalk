@@ -26,5 +26,6 @@
   "clean up console logs",
   "refactor error handling",
   "simplify token logic",
-  "restructure middleware chain"
+  "restructure middleware chain",
+  "clean up env config"
 ]
