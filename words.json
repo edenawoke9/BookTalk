@@ -27,5 +27,6 @@
   "refactor error handling",
   "simplify token logic",
   "restructure middleware chain",
-  "clean up env config"
+  "clean up env config",
+  "refactor group controller"
 ]
