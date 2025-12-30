@@ -28,5 +28,6 @@
   "simplify token logic",
   "restructure middleware chain",
   "clean up env config",
-  "refactor group controller"
+  "refactor group controller",
+  "final refactor pass"
 ]
