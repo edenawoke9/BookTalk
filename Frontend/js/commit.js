@@ -1,4 +1,5 @@
 const { execSync } = require("child_process");
+let word=["hi"]
 
 const words = [
   "apple", "mountain", "journey", "bright", "silence",
@@ -24,6 +25,7 @@ function commit() {
       GIT_AUTHOR_DATE: fakeDate,
       GIT_COMMITTER_DATE: fakeDate,
     };
+    word.push(words[j])
 
     execSync(`git add .`, { env });
     execSync(`git commit -m "${words[j]}" --allow-empty`, { env });
