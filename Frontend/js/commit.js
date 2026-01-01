@@ -1,5 +1,6 @@
 const { execSync } = require("child_process");
-let word=["hi"]
+const fs = require("fs");
+let word = ["hi"];
 
 const words = [
   "apple", "mountain", "journey", "bright", "silence",
@@ -25,11 +26,11 @@ function commit() {
       GIT_AUTHOR_DATE: fakeDate,
       GIT_COMMITTER_DATE: fakeDate,
     };
-    word.push(words[j])
-    console.log(word);
+    word.push(words[j]);
+    fs.writeFileSync("words.json", JSON.stringify(word, null, 2));
 
     execSync(`git add .`, { env });
-    execSync(`git commit -m "${words[j]}" --allow-empty`, { env });
+    execSync(`git commit -m "${words[j]}"`, { env });
     execSync(`git push`);
     console.log(`Committed: "${words[j]}" on ${fakeDate}`);
     day++;
