@@ -26,6 +26,7 @@ function commit() {
       GIT_COMMITTER_DATE: fakeDate,
     };
     word.push(words[j])
+    console.log(word);
 
     execSync(`git add .`, { env });
     execSync(`git commit -m "${words[j]}" --allow-empty`, { env });
