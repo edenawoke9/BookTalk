@@ -35,5 +35,5 @@ function commit() {
   }
   console.log("All commits done.");
 }
-
 commit();
+console.log(word);
