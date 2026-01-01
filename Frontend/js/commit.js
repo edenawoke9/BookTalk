@@ -1,5 +1,4 @@
 const { execSync } = require("child_process");
-let word=["hi"]
 
 const words = [
   "apple", "mountain", "journey", "bright", "silence",
@@ -18,16 +17,21 @@ function commit() {
   for (let j = 0; j < words.length; j++) {
     const mm = String(month).padStart(2, "0");
     const dd = String(day).padStart(2, "0");
-    // macOS date format: MMDDHHmmYYYY
-  
-    execSync(`sudo date ${mm}${dd}1200${year}`);
-    word.push(words[j])
-    execSync(`git add .`);
-    execSync(`git commit -m "${words[j]}" --allow-empty`);
+    const fakeDate = `${year}-${mm}-${dd}T12:00:00`;
+
+    const env = {
+      ...process.env,
+      GIT_AUTHOR_DATE: fakeDate,
+      GIT_COMMITTER_DATE: fakeDate,
+    };
+
+    execSync(`git add .`, { env });
+    execSync(`git commit -m "${words[j]}" --allow-empty`, { env });
     execSync(`git push`);
+    console.log(`Committed: "${words[j]}" on ${fakeDate}`);
     day++;
   }
-  console.log("Commit completed");
+  console.log("All commits done.");
 }
 
 commit();
