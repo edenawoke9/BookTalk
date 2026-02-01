@@ -3,17 +3,17 @@ const fs = require("fs");
 let word = ["hi"];
 
 const words = [
-  "apple", "mountain", "journey", "bright", "silence",
-  "freedom", "whisper", "ocean", "candle", "thunder",
-  "forest", "mirror", "golden", "horizon", "courage",
-  "puzzle", "velocity", "lantern", "destiny", "shadow",
-  "crystal", "galaxy", "harmony", "phoenix", "marble",
-  "sunrise", "breeze", "summit", "echo", "voyage"
+  "fix typo", "update styles", "refactor auth", "add comments", "clean up",
+  "improve UI", "update deps", "fix bug", "add validation", "optimize query",
+  "remove logs", "update readme", "add tests", "fix layout", "refactor API",
+  "add middleware", "fix routing", "update schema", "add error handling", "improve perf",
+  "fix imports", "update config", "add pagination", "fix session", "update models",
+  "add logging", "fix CORS", "update env", "add caching", "final cleanup"
 ];
 
 function commit() {
   let day = 1;
-  const month = 1;
+  const month = 2;
   const year = 2026;
 
   for (let j = 0; j < words.length; j++) {
