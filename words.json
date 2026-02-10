@@ -8,5 +8,6 @@
   "improve UI",
   "update deps",
   "fix bug",
-  "add validation"
+  "add validation",
+  "optimize query"
 ]
