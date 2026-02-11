@@ -9,5 +9,6 @@
   "update deps",
   "fix bug",
   "add validation",
-  "optimize query"
+  "optimize query",
+  "remove logs"
 ]
