@@ -13,5 +13,6 @@
   "remove logs",
   "update readme",
   "add tests",
-  "fix layout"
+  "fix layout",
+  "refactor API"
 ]
