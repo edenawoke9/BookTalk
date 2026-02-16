@@ -14,5 +14,6 @@
   "update readme",
   "add tests",
   "fix layout",
-  "refactor API"
+  "refactor API",
+  "add middleware"
 ]
