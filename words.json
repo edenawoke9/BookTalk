@@ -15,5 +15,6 @@
   "add tests",
   "fix layout",
   "refactor API",
-  "add middleware"
+  "add middleware",
+  "fix routing"
 ]
