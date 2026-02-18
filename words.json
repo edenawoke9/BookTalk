@@ -16,5 +16,6 @@
   "fix layout",
   "refactor API",
   "add middleware",
-  "fix routing"
+  "fix routing",
+  "update schema"
 ]
