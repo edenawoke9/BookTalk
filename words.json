@@ -17,5 +17,6 @@
   "refactor API",
   "add middleware",
   "fix routing",
-  "update schema"
+  "update schema",
+  "add error handling"
 ]
