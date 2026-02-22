@@ -20,5 +20,6 @@
   "update schema",
   "add error handling",
   "improve perf",
-  "fix imports"
+  "fix imports",
+  "update config"
 ]
