@@ -21,5 +21,6 @@
   "add error handling",
   "improve perf",
   "fix imports",
-  "update config"
+  "update config",
+  "add pagination"
 ]
