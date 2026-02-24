@@ -22,5 +22,6 @@
   "improve perf",
   "fix imports",
   "update config",
-  "add pagination"
+  "add pagination",
+  "fix session"
 ]
