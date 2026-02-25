@@ -23,5 +23,6 @@
   "fix imports",
   "update config",
   "add pagination",
-  "fix session"
+  "fix session",
+  "update models"
 ]
