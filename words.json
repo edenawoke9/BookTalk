@@ -24,5 +24,6 @@
   "update config",
   "add pagination",
   "fix session",
-  "update models"
+  "update models",
+  "add logging"
 ]
