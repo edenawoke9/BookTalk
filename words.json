@@ -25,5 +25,6 @@
   "add pagination",
   "fix session",
   "update models",
-  "add logging"
+  "add logging",
+  "fix CORS"
 ]
