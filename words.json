@@ -26,5 +26,6 @@
   "fix session",
   "update models",
   "add logging",
-  "fix CORS"
+  "fix CORS",
+  "update env"
 ]
