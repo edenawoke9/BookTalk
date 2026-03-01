@@ -27,5 +27,6 @@
   "update models",
   "add logging",
   "fix CORS",
-  "update env"
+  "update env",
+  "add caching"
 ]
