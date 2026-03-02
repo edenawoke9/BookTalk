@@ -28,5 +28,6 @@
   "add logging",
   "fix CORS",
   "update env",
-  "add caching"
+  "add caching",
+  "final cleanup"
 ]
